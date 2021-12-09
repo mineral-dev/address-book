@@ -1,0 +1,54 @@
+{
+    "name": "mineral/address-book",
+    "description": "Address book",
+    "keywords": [
+        "mineral",
+        "address-book"
+    ],
+    "homepage": "https://github.com/mineral/address-book",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Faza Raihan",
+            "email": "faza@mineral.co.id",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.4|^8.0",
+        "illuminate/support": "^8.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^6.0",
+        "phpunit/phpunit": "^9.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Mineral\\AddressBook\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Mineral\\AddressBook\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Mineral\\AddressBook\\AddressBookServiceProvider"
+            ],
+            "aliases": {
+                "AddressBook": "Mineral\\AddressBook\\AddressBookFacade"
+            }
+        }
+    }
+}
