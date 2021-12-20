@@ -69,7 +69,7 @@ class AddressBookController extends \App\Http\Controllers\Controller
 
     public function show($id)
     {
-        $addressBook = AddressBook::byUser(auth()->id())->whereUid($id)->first();
+        $addressBook = AddressBook::byUser(auth()->id())->whereUuid($id)->first();
 
         return response()->json([
             'success' => true,
