@@ -101,6 +101,7 @@ class AddressBookController extends \App\Http\Controllers\Controller
 
         $addressBook = AddressBook::whereUuid($id)->first();
         $addressBook->name = request()->get('name');
+        $addressBook->mobile = request()->get('mobile');
         $addressBook->country = request()->get('country');
         $addressBook->province = request()->get('province');
         $addressBook->city = request()->get('city');

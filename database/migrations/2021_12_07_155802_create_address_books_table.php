@@ -20,6 +20,7 @@ class CreateAddressBooksTable extends Migration
                 $table->efficientUuid('uuid')->index();
                 $table->string('name')->nullable();
                 $table->string('user_id')->nullable();
+                $table->string('mobile')->nullable();
                 $table->string('country')->nullable();
                 $table->string('province')->nullable();
                 $table->string('city')->nullable();

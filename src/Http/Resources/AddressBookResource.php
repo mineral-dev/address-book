@@ -19,6 +19,7 @@ class AddressBookResource extends JsonResource
         return [
             'uuid' => $this->uuid,
             'name' => $this->name,
+            'mobile' => $this->mobile,
             'address' => $this->address,
             'country' => $this->country,
             'province' => base64_encode($this->province),
