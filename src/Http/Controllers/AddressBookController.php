@@ -48,9 +48,9 @@ class AddressBookController extends \App\Http\Controllers\Controller
         $addressBook->user_id = auth()->id();
         $addressBook->name = request()->get('name');
         $addressBook->country = request()->get('country');
-        $addressBook->province = request()->get('province');
-        $addressBook->city = request()->get('city');
-        $addressBook->district = request()->get('district');
+        $addressBook->province = base64_decode(request()->get('province'));
+        $addressBook->city = base64_decode(request()->get('city'));
+        $addressBook->district = base64_decode(request()->get('district'));
         $addressBook->postal_code = request()->get('postal_code');
         $addressBook->address = request()->get('address') ?? 0;
         $addressBook->default = request()->get('default');
@@ -103,9 +103,9 @@ class AddressBookController extends \App\Http\Controllers\Controller
         $addressBook->name = request()->get('name');
         $addressBook->mobile = request()->get('mobile');
         $addressBook->country = request()->get('country');
-        $addressBook->province = request()->get('province');
-        $addressBook->city = request()->get('city');
-        $addressBook->district = request()->get('district');
+        $addressBook->province = base64_decode(request()->get('province'));
+        $addressBook->city = base64_decode(request()->get('city'));
+        $addressBook->district = base64_decode(request()->get('district'));
         $addressBook->postal_code = request()->get('postal_code');
         $addressBook->address = request()->get('address');
         $addressBook->default = request()->get('default');
