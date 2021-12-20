@@ -48,8 +48,8 @@ class RouteRegistrar
         ]);
 
         $this->router->get('profile/address-book/{id}/detail', [
-            'uses' => 'AddressBookController@update',
-            'as' => 'address-book.delete',
+            'uses' => 'AddressBookController@show',
+            'as' => 'address-book.show',
         ]);
 
         $this->router->post('profile/address-book', [
@@ -60,6 +60,11 @@ class RouteRegistrar
         $this->router->post('profile/address-book/{id}', [
             'uses' => 'AddressBookController@update',
             'as' => 'address-book.update',
+        ]);
+
+        $this->router->put('profile/address-book/{id}', [
+            'uses' => 'AddressBookController@setDefault',
+            'as' => 'address-book.set-default',
         ]);
 
         $this->router->delete('profile/address-book/{id}', [

@@ -67,6 +67,17 @@ class AddressBookController extends \App\Http\Controllers\Controller
         ], 200);
     }
 
+    public function show($uid)
+    {
+        $addressBook = AddressBook::byUser(auth()->id())->whereUuid($uid)->first();
+
+        return response()->json([
+            'success' => true,
+            'address_book' => new AddressBookResource($addressBook)
+        ], 200);
+        
+    }
+
     public function update($id)
     {
         $rules = [
@@ -122,6 +133,23 @@ class AddressBookController extends \App\Http\Controllers\Controller
             'message' => 'data has been deleted',
             'data' => null
         ], 200);
+    }
+
+    public function setDefault($id)
+    {
+        $addressBook = AddressBook::where('user_id', auth()->id())
+            ->where('default', 1)
+            ->update(['default' => null]);
+
+        $addressBook = AddressBook::where('user_id', auth()->id())
+            ->whereUuid($id)
+            ->update(['default' => 1]);
+
+        return response([
+            'success' => true,
+            'message' => 'Success'
+        ], 200);
+        
     }
 
     public function getDefault()
