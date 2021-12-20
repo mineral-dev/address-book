@@ -26,6 +26,7 @@ class AddressBookResource extends JsonResource
             'city' => base64_encode($this->city),
             'district' => base64_encode($this->district),
             'postal_code' => $this->postal_code,
+            'default' => $this->default,
         ];
     }
 }
