@@ -47,6 +47,7 @@ class AddressBookController extends \App\Http\Controllers\Controller
         $addressBook = new AddressBook;
         $addressBook->user_id = auth()->id();
         $addressBook->name = request()->get('name');
+        $addressBook->mobile = request()->get('mobile');
         $addressBook->country = request()->get('country');
         $addressBook->province = base64_decode(request()->get('province'));
         $addressBook->city = base64_decode(request()->get('city'));
