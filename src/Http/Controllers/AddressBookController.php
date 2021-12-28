@@ -54,12 +54,24 @@ class AddressBookController extends \App\Http\Controllers\Controller
         $addressBook->district = base64_decode(request()->get('district'));
         $addressBook->postal_code = request()->get('postal_code');
         $addressBook->address = request()->get('address') ?? 0;
+
+        $checkAddress = AddressBook::where('user_id', auth()->id())->count();
+        if ($checkAddress) 
+            $addressBook->default = 1; 
+        else
+            $addressBook->default = request()->get('default');
+        
         $addressBook->default = request()->get('default');
         $addressBook->save();
 
         if($addressBook->default) {
             AddressBook::where('id', '<>', $addressBook->id)
                 ->where('user_id', auth()->id())->update(['default' => 0]);
+        }
+
+        $checkAddress = AddressBook::where('user_id', auth()->id())->count();
+        if ($checkAddress) {
+            
         }
 
         return response([
@@ -109,7 +121,6 @@ class AddressBookController extends \App\Http\Controllers\Controller
         $addressBook->district = base64_decode(request()->get('district'));
         $addressBook->postal_code = request()->get('postal_code');
         $addressBook->address = request()->get('address');
-        $addressBook->default = request()->get('default');
         $addressBook->save();
 
         if($addressBook->default) {
@@ -127,8 +138,17 @@ class AddressBookController extends \App\Http\Controllers\Controller
     {
         $addressBook = AddressBook::whereUuid($id)->first();
 
-        if($addressBook)
+        if($addressBook){
+            if ($addressBook->default) {
+                $addressDefault = AddressBook::byUser(auth()->id())->first();
+                if ($addressDefault) {
+                    $addressDefault->default = 1;
+                    $addressDefault->save();
+                }
+            }
+
             $addressBook->delete();
+        }
 
         return response([
             'success' => true,
@@ -139,7 +159,7 @@ class AddressBookController extends \App\Http\Controllers\Controller
 
     public function setDefault($id)
     {
-        $addressBook = AddressBook::where('user_id', auth()->id())
+        AddressBook::where('user_id', auth()->id())
             ->where('default', 1)
             ->update(['default' => null]);
 
