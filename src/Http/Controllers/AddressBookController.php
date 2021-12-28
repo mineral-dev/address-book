@@ -56,7 +56,7 @@ class AddressBookController extends \App\Http\Controllers\Controller
         $addressBook->address = request()->get('address') ?? 0;
 
         $checkAddress = AddressBook::where('user_id', auth()->id())->count();
-        if ($checkAddress) 
+        if (!$checkAddress) 
             $addressBook->default = 1; 
         else
             $addressBook->default = request()->get('default');
