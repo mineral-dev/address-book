@@ -61,7 +61,6 @@ class AddressBookController extends \App\Http\Controllers\Controller
         else
             $addressBook->default = request()->get('default');
         
-        $addressBook->default = request()->get('default');
         $addressBook->save();
 
         if($addressBook->default) {
